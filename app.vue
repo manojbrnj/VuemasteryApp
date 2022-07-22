@@ -50,6 +50,7 @@ Vue.component("product", {
             :key="i"
             @mouseover="updateImage(item.image,item.name)"
           ></div>
+                <product-review></product-review>
         </div>
       </div> 
     
@@ -139,6 +140,45 @@ Vue.component("product", {
 
   },
 });
+
+
+Vue.component('product-review', {
+  template:` 
+  <form  class="review-form" @submit.prevent="">
+  <p>
+  <label for="name">Name
+  </label>
+  <input id="name"></input>
+  </p>
+    <p>
+  <label for="review">Review
+  </label>
+  <textarea id="review"></textarea>
+  </p>
+  <p>
+  <select>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  </select>
+  </p>
+<button type="submit" style="backgroundColor: #E0E0E0; width:100%;padding:10px;border: 1px solid #E0E0E0; border-radius:7px; margin:10px 0 ;
+">Submit
+</button>
+  
+  </form>
+  <input v-model="name"></input>
+  
+  ` ,
+  data(){
+    return{ 
+      name:null,
+      review:null
+    }
+  }
+
+})
 var app = new Vue({
   el: "#app",
   data(){

@@ -30,7 +30,7 @@ body{
     flex-wrap: wrap;
     align-content: flex-end;
     /* margin: 60px 20px; */
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-evenly;
     }
 .product-info{
@@ -45,4 +45,38 @@ body{
 
 .outstock{
     text-decoration: line-through;
+}
+.review-form{
+    display:
+    flex;
+    border: 1px solid #E0E0E0;
+    height:
+    auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: baseline;
+    padding:10px;
+}
+.review-form p{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    align-content: space-around;
+    justify-content: flex-start;
+}
+.review-form p input{
+    box-sizing: border-box;
+      border-radius:7px;
+      width:15em;
+      height:2em;
+      border: 1px solid #E0E0E0;
+      padding:5px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size:1em
+}
+.review-form p label{
+     margin: 10px 0px;
+     width:4em
 }
