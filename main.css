@@ -1,0 +1,48 @@
+body{
+    font-size: 22px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    box-sizing: border-box;
+    }
+    *{
+        margin : 0;
+        padding: 0;
+    }
+
+    input[type="text"]{
+        margin:10px 10px;
+        display: block;
+    }
+.product-image{
+    display: flex;
+    margin: 0 0;
+    padding: 0 0;
+    flex-direction: column;
+}
+    h1 {
+    /* display: block; */
+     font-size: 2em; 
+     margin:0 0; 
+    padding:0 0; 
+    /* font-weight: bold; */
+}
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    /* margin: 60px 20px; */
+    flex-direction: row;
+    justify-content: space-evenly;
+    }
+.product-info{
+        padding-top: 0px;
+        margin-top: 0px;
+        font-size: 1 em; 
+}
+.color-box{
+    width:20px;
+    height:20px;
+}
+
+.outstock{
+    text-decoration: line-through;
+}
