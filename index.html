@@ -9,7 +9,8 @@
   </head>
   <body>
     <div id="app">
-      <product :premium="premium"> </product>
+      <div class="cart">{{cart.length}}</div>
+      <product :premium="premium" @add-to-cart="UpdateCart(id)"> </product>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.4/dist/vue.js"></script>
     <script src="./app.vue"></script>

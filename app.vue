@@ -62,11 +62,11 @@ Vue.component("product", {
       description: "promotion",
       image:
         "https://www.bing.com/th?id=OSC.TOOL54BE3913F8312FE24368C9AA17FB5C185FB3F7F9CCABECE1E012D6544BDA5EB8&w=80&h=80&c=7&o=6&pid=Retail",
-      onsell: false,
+      onsell: true,
       name: "chocolate",
       inventory: 10,
       cart: 0,
-      instock: false,
+      instock: true,
       brand: "VueMastery",
       details: [
         {
@@ -110,7 +110,7 @@ Vue.component("product", {
   <!-- //data Ends -->
   methods: {
     updateCartValue: function () {
-      this.cart += 1;
+      this.$emit('add-to-cart','1')
     },
     <!-- //updateCartValue ends -->
     decrementCartValue: function () {
@@ -121,6 +121,7 @@ Vue.component("product", {
       this.image = image;
       this.name = name;
     },
+    
   },
   <!-- //method ends -->
   computed: {
@@ -140,5 +141,18 @@ Vue.component("product", {
 });
 var app = new Vue({
   el: "#app",
+  data(){
+    return{ 
   premium: true,
+  cart:[]
+    }
+  },
+  methods:{ 
+UpdateCart:function (id) { 
+  this.cart.push(id)
+}
+
+  }
+
 });
+
