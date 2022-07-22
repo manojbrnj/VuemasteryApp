@@ -1,12 +1,13 @@
 Vue.component("product", {
   props: {
-    message: {
-      type: String,
-      default: "hi",
+   premium: {
+      type: Boolean,
+      default: true,
     },
   },
   template: `
      <div class="product">
+      <p>user is premium  {{shipping}}</p>
         <div class="product-image">
           <img :src="image" :alt="description" srcset="" />
           {{name}}
@@ -20,6 +21,7 @@ Vue.component("product", {
                 <li style="margin: 0 20px; color: #7a6f6f">{{item.price}}</li>
                 <li style="margin: 0 20px; color: #7a6f6f">{{item.type}}</li>
               </ul>
+             
               <hr />
             </li>
           </ul>
@@ -52,7 +54,7 @@ Vue.component("product", {
       </div> 
     
     `,
-  //data start
+  <!-- //data start -->
   data() {
     return {
       product: "socks",
@@ -105,26 +107,35 @@ Vue.component("product", {
       ],
     };
   },
-  //data Ends
+  <!-- //data Ends -->
   methods: {
     updateCartValue: function () {
       this.cart += 1;
     },
-    //updateCartValue ends
+    <!-- //updateCartValue ends -->
     decrementCartValue: function () {
       if (this.cart > 0) this.cart -= 1;
     },
-    //decrementCartValue ends
+    <!-- //decrementCartValue ends -->
     updateImage: function (image, name) {
       this.image = image;
       this.name = name;
     },
   },
-  //method ends
+  <!-- //method ends -->
   computed: {
     title: function () {
       return this.brand + " " + this.product;
     },
+    shipping:function(){
+      if(this.premium){
+        return "free"
+      }
+      else {
+        return "cost : 99rs"
+      }
+    }
+
   },
 });
 var app = new Vue({
