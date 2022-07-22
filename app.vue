@@ -1,5 +1,57 @@
-var app = new Vue({
-  el: "#app",
+Vue.component("product", {
+  props: {
+    message: {
+      type: String,
+      default: "hi",
+    },
+  },
+  template: `
+     <div class="product">
+        <div class="product-image">
+          <img :src="image" :alt="description" srcset="" />
+          {{name}}
+        </div>
+        <div class="product-info">
+          <h1>{{title}}</h1>
+          <ul>
+            <li v-for="(item,i) in details" :key="i">
+              <ul>
+                <p style="font-weight: bold">{{item.name}}</p>
+                <li style="margin: 0 20px; color: #7a6f6f">{{item.price}}</li>
+                <li style="margin: 0 20px; color: #7a6f6f">{{item.type}}</li>
+              </ul>
+              <hr />
+            </li>
+          </ul>
+          <!-- <p :display=["inStock"]>instock</p> -->
+          <!-- <p v-else>outstock</p> -->
+          <p
+            v-show="inventory <=10 && inventory > 0"
+            :class="{outstock : !instock}"
+          >
+            Almost Sold Out
+          </p>
+          <p v-show="inventory <=0 ">Sold Out</p>
+          <p v-show="onsell">OnSell</p>
+          <button @click="updateCartValue" :disabled="!instock">
+            AddToCart
+          </button>
+          <button @click="decrementCartValue">DeleteToCart</button>
+          <div class="cart">
+            <p>(cart{{cart}})</p>
+          </div>
+
+          <div
+            v-for="(item, i) in details"
+            :style="{backgroundColor: item.color }"
+            class="color-box"
+            :key="i"
+            @mouseover="updateImage(item.image,item.name)"
+          ></div>
+        </div>
+      </div> 
+    
+    `,
   //data start
   data() {
     return {
@@ -74,4 +126,8 @@ var app = new Vue({
       return this.brand + " " + this.product;
     },
   },
+});
+var app = new Vue({
+  el: "#app",
+  premium: true,
 });
