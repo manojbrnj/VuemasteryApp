@@ -50,7 +50,7 @@ Vue.component("product", {
             :key="i"
             @mouseover="updateImage(item.image,item.name)"
           ></div>
-                <product-review></product-review>
+                <product-review @add-review="updateReview($event)"></product-review>
         </div>
       </div> 
     
@@ -113,6 +113,10 @@ Vue.component("product", {
     updateCartValue: function () {
       this.$emit('add-to-cart','1')
     },
+    updateReview:function(review){ 
+       console.log(review)
+
+    },
     <!-- //updateCartValue ends -->
     decrementCartValue: function () {
       if (this.cart > 0) this.cart -= 1;
@@ -144,28 +148,28 @@ Vue.component("product", {
 
 Vue.component('product-review', {
   template:` 
-  <form  class="review-form" @submit.prevent="">
+  <form  class="review-form" @submit.prevent="onSubmit">
   <p>
   <label for="name">Name
   </label>
-  <input id="name"></input>
+  <input id="name" v-model="name"></input>
   </p>
     <p>
   <label for="review">Review
   </label>
-  <textarea id="review"></textarea>
+  <textarea id="review" v-model="review"></textarea>
   </p>
   <p>
-  <select>
+  <select v-model="rating">
   <option>1</option>
   <option>2</option>
   <option>3</option>
   <option>4</option>
   </select>
   </p>
-<button type="submit" style="backgroundColor: #E0E0E0; width:100%;padding:10px;border: 1px solid #E0E0E0; border-radius:7px; margin:10px 0 ;
+<input type="submit" value="submit" style="backgroundColor: #E0E0E0; width:100%;padding:10px;border: 1px solid #E0E0E0; border-radius:7px; margin:10px 0 ;
 ">Submit
-</button>
+</input>
   
   </form>
   <input v-model="name"></input>
@@ -174,7 +178,22 @@ Vue.component('product-review', {
   data(){
     return{ 
       name:null,
-      review:null
+      review:null,
+      rating:null
+    }
+  },
+  methods:{ 
+    onSubmit:function () {
+let productReview={
+  name:this.name,
+  review:this.review,
+  rating:this.rating
+}
+this.$emit('add-review',productReview)
+this.name= null;
+this.rating= null;
+this.review=null;
+
     }
   }
 
